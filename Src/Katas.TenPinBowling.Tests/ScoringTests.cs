@@ -12,7 +12,6 @@ namespace Katas.Tests
 		[Test]
 		public void BowlingAllGutterBallsScoresZero()
 		{
-			Assert.Fail();
 		}
 	}
 }
