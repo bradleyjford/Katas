@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Katas.BowlingGame
 {
-	[TestFixture]
+	[TestFixture] 
 	public class BowlingGameTests
 	{
 		private Game _game;
