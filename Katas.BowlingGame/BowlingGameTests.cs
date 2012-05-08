@@ -73,5 +73,13 @@ namespace Katas.BowlingGame
 		{
 			_game.Roll(10);
 		}
+
+		[Test]
+		public void TestPerfectGame()
+		{
+			RollMany(12, 10);
+
+			Assert.AreEqual(300, _game.Score);
+		}
 	}
 }
