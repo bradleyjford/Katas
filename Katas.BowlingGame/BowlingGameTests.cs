@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace Katas.BowlingGame
 {
-	[TestFixture] 
+	[TestFixture]
 	public class BowlingGameTests
 	{
 		private Game _game;
@@ -14,15 +14,12 @@ namespace Katas.BowlingGame
 			_game = new Game();
 		}
 
-		private void RollStrike()
+		[Test]
+		public void TestGutterBallGame()
 		{
-			_game.Roll(10);
-		}
+			RollMany(20, 0);
 
-		private void RollSpare()
-		{
-			_game.Roll(5);
-			_game.Roll(5);
+			Assert.AreEqual(0, _game.Score);
 		}
 
 		private void RollMany(int rolls, int pins)
@@ -34,16 +31,7 @@ namespace Katas.BowlingGame
 		}
 
 		[Test]
-		public void TestGutterGame()
-		{
-			RollMany(20, 0);
-
-			Assert.AreEqual(0, _game.Score);
-		}
-
-
-		[Test]
-		public void TestAllOnes()
+		public void TestOnePinGame()
 		{
 			RollMany(20, 1);
 
@@ -51,34 +39,39 @@ namespace Katas.BowlingGame
 		}
 
 		[Test]
-		public void TestOneSpare()
+		public void TestSpareGame()
 		{
 			RollSpare();
+
 			_game.Roll(3);
-			
+
 			RollMany(17, 0);
 
 			Assert.AreEqual(16, _game.Score);
 		}
 
+		private void RollSpare()
+		{
+			_game.Roll(5);
+			_game.Roll(5);
+		}
+
+
 		[Test]
-		public void TestOneStrike()
+		public void TestStrikeGame()
 		{
 			RollStrike();
-			_game.Roll(3);
-			_game.Roll(4);
 
-			RollMany(16, 0);
+			_game.Roll(7);
+			
+			RollMany(17, 0);
 
 			Assert.AreEqual(24, _game.Score);
 		}
 
-		[Test]
-		public void TestPerfectGame()
+		private void RollStrike()
 		{
-			RollMany(12, 10);
-
-			Assert.AreEqual(300, _game.Score);
+			_game.Roll(10);
 		}
 	}
 }
