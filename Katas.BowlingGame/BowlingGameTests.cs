@@ -24,7 +24,7 @@ namespace Katas.BowlingGame
 
 		private void RollMany(int rolls, int pins)
 		{
-			for (var i = 0; i < rolls; i++)
+			for (var roll = 0; roll < rolls; roll++)
 			{
 				_game.Roll(pins);
 			}
@@ -42,7 +42,7 @@ namespace Katas.BowlingGame
 		public void TestSpareGame()
 		{
 			RollSpare();
-
+			
 			_game.Roll(3);
 
 			RollMany(17, 0);
@@ -56,15 +56,15 @@ namespace Katas.BowlingGame
 			_game.Roll(5);
 		}
 
-
 		[Test]
 		public void TestStrikeGame()
 		{
 			RollStrike();
 
-			_game.Roll(7);
-			
-			RollMany(17, 0);
+			_game.Roll(3);
+			_game.Roll(4);
+
+			RollMany(16, 0);
 
 			Assert.AreEqual(24, _game.Score);
 		}
