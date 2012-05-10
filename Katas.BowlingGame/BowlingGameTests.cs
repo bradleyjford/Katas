@@ -14,6 +14,22 @@ namespace Katas.BowlingGame
 			_game = new Game();
 		}
 
+		private void RollMany(int rolls, int pins)
+		{
+			for (var i = 0; i < rolls; i++)
+			{
+				_game.Roll(pins);
+			}
+		}
+
+		[Test]
+		public void TestAllOnePinGame()
+		{
+			RollMany(20, 1);
+
+			Assert.AreEqual(20, _game.Score);
+		}
+
 		[Test]
 		public void TestGutterBallGame()
 		{
@@ -22,27 +38,11 @@ namespace Katas.BowlingGame
 			Assert.AreEqual(0, _game.Score);
 		}
 
-		private void RollMany(int rolls, int pins)
-		{
-			for (var roll = 0; roll < rolls; roll++)
-			{
-				_game.Roll(pins);
-			}
-		}
-
-		[Test]
-		public void TestOnePinGame()
-		{
-			RollMany(20, 1);
-
-			Assert.AreEqual(20, _game.Score);
-		}
-
 		[Test]
 		public void TestSpareGame()
 		{
-			RollSpare();
-			
+			_game.Roll(5);
+			_game.Roll(5);
 			_game.Roll(3);
 
 			RollMany(17, 0);
@@ -50,28 +50,16 @@ namespace Katas.BowlingGame
 			Assert.AreEqual(16, _game.Score);
 		}
 
-		private void RollSpare()
-		{
-			_game.Roll(5);
-			_game.Roll(5);
-		}
-
 		[Test]
 		public void TestStrikeGame()
 		{
-			RollStrike();
-
-			_game.Roll(3);
+			_game.Roll(10);
 			_game.Roll(4);
+			_game.Roll(3);
 
 			RollMany(16, 0);
 
 			Assert.AreEqual(24, _game.Score);
-		}
-
-		private void RollStrike()
-		{
-			_game.Roll(10);
 		}
 
 		[Test]
