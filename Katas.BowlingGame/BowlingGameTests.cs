@@ -1,15 +1,13 @@
 ﻿using System;
-using NUnit.Framework;
+using Xunit;
 
 namespace Katas.BowlingGame
 {
-	[TestFixture]
 	public class BowlingGameTests
 	{
 		private Game _game;
 
-		[SetUp]
-		public void SetUp()
+		public BowlingGameTests()
 		{
 			_game = new Game();
 		}
@@ -22,23 +20,23 @@ namespace Katas.BowlingGame
 			}
 		}
 
-		[Test]
+		[Fact]
 		public void TestGutterBallGame()
 		{
 			RollMany(20, 0);
 
-			Assert.AreEqual(0, _game.Score);
+			Assert.Equal(0, _game.Score);
 		}
 
-		[Test]
+		[Fact]
 		public void TestAllOnePinGame()
 		{
 			RollMany(20, 1);
 
-			Assert.AreEqual(20, _game.Score);
+			Assert.Equal(20, _game.Score);
 		}
 
-		[Test]
+		[Fact]
 		public void TestSpareGame()
 		{
 			_game.Roll(5);
@@ -48,10 +46,10 @@ namespace Katas.BowlingGame
 
 			RollMany(17, 0);
 
-			Assert.AreEqual(16, _game.Score);
+			Assert.Equal(16, _game.Score);
 		}
 
-		[Test]
+		[Fact]
 		public void TestStrikeGame()
 		{
 			_game.Roll(10);
@@ -60,15 +58,15 @@ namespace Katas.BowlingGame
 
 			RollMany(16, 0);
 
-			Assert.AreEqual(24, _game.Score);
+			Assert.Equal(24, _game.Score);
 		}
 
-		[Test]
+		[Fact]
 		public void TestPerfectGame()
 		{
 			RollMany(12, 10);
 
-			Assert.AreEqual(300, _game.Score);
+			Assert.Equal(300, _game.Score);
 		}
 	}
 }
